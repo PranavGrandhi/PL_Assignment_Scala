@@ -49,14 +49,16 @@ object Part2
 {
   // A generic function, inOrder, that is parameterized by type T 
   // and computes the list of labels found in a tree, in in-order order.
-  def inOrder[T](tree: Tree[T]): List[T] = tree match {
+  def inOrder[T](tree: Tree[T]): List[T] = tree match 
+  {
     case Leaf(value) => List(value)
     case Node(value, left, right) => inOrder(left) ::: List(value) ::: inOrder(right)
   }
 
   // A generic function treeSum, parameterized by type T such that any such T has to implement the Addable trait,
   // which computes the sum of all the labels in a tree.
-  def treeSum[T <: Addable[T]](tree: Tree[T]): T = tree match {
+  def treeSum[T <: Addable[T]](tree: Tree[T]): T = tree match 
+  {
     case Leaf(value) => value
     case Node(value, left, right) => value + treeSum(left) + treeSum(right)
   }
@@ -64,7 +66,8 @@ object Part2
   // A generic function treeMap (analogous to MAP in Scheme or ML) which applies a function to every label in a tree, 
   // returning a tree of the results. treeMap, for any types T and V, 
   // should take a function of type T=>V and a tree of type Tree[T] as parameters and return a tree of type Tree[V] as a result.
-  def treeMap[T, V](f: T => V, tree: Tree[T]): Tree[V] = tree match {
+  def treeMap[T, V](f: T => V, tree: Tree[T]): Tree[V] = tree match 
+  {
     case Leaf(value) => Leaf(f(value))
     case Node(value, left, right) => Node(f(value), treeMap(f, left), treeMap(f, right))
   }
@@ -74,7 +77,8 @@ object Part2
   // returning a tree of type Tree[B] as the result.
   def BTreeMap(f: B => B, tree: Tree[B]): Tree[B] = treeMap(f, tree)
 
-  def test(): Unit = {
+  def test(): Unit = 
+  {
     def faa(a: A): A = new A(a.value + 10)
     def fab(a: A): B = new B(a.value + 20)
     def fba(b: B): A = new A(b.value + 30)
@@ -122,7 +126,8 @@ object Part2
     // println(treeMap(fca,myATree)) 	// This is a type error: fca expects C, but treeMap is working with Tree[A]
   }
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit = 
+  {
     // call test
     test()
   }
